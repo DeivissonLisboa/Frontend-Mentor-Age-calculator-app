@@ -18,24 +18,61 @@
     <title>Frontend Mentor | Age calculator app</title>
   </head>
   <body>
-    <!-- Day
-  DD
+    <main class="container">
+      <header>
+        <form action="" class="form">
+          <div class="form__input input">
+            <label for="day" class="input__label">day</label>
+            <input
+              type="number"
+              name="day"
+              id="day"
+              class="input__input_number"
+              placeholder="DD"
+            />
+          </div>
+          <div class="form__input input">
+            <label for="month" class="input__label">month</label>
+            <input
+              type="number"
+              name="month"
+              id="month"
+              class="input__input_number"
+              placeholder="MM"
+            />
+          </div>
+          <div class="form__input input">
+            <label for="year" class="input__label">year</label>
+            <input
+              type="number"
+              name="year"
+              id="year"
+              class="input__input_number"
+              placeholder="YYYY"
+            />
+          </div>
+          <button class="form__button">
+            <img src="./assets/images/icon-arrow.svg" alt="" />
+          </button>
+        </form>
+      </header>
+      <section class="result">
+        <p class="result__text"><span id="years">--</span>years</p>
+        <p class="result__text"><span id="months">--</span>months</p>
+        <p class="result__text"><span id="days">--</span>days</p>
+      </section>
+    </main>
 
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days -->
-
-    <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div>
+    <footer class="footer">
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://www.frontendmentor.io/profile/DeivissonLisboa"
+          >Deivisson Lisboa</a
+        >.
+      </p>
+    </footer>
   </body>
 </html>
