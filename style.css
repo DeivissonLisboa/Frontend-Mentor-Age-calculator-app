@@ -37,6 +37,7 @@ body {
   border-radius: 1.5rem;
   border-bottom-right-radius: 10rem;
   background-color: var(--clr-neutral-400);
+  box-shadow: 0 0 5px 5px var(--clr-neutral-500);
 }
 
 .form {
