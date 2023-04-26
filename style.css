@@ -94,6 +94,18 @@ input[type="number"] {
   background-color: var(--clr-primary-400);
 }
 
+.result__text {
+  font-size: 6rem;
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+  line-height: 7rem;
+  color: var(--clr-neutral-800);
+}
+
+.result__text span {
+  color: var(--clr-primary-400);
+}
+
 .footer {
   position: absolute;
   bottom: 0;
