@@ -43,7 +43,7 @@ body {
 .form {
   display: flex;
   gap: 2rem;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
   margin-bottom: 3rem;
   border-bottom: 2px solid var(--clr-neutral-600);
   position: relative;
@@ -54,6 +54,7 @@ body {
   display: grid;
   gap: 0.5rem;
   color: var(--clr-neutral-700);
+  position: relative;
 }
 
 .input__label {
@@ -84,6 +85,12 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.input__error {
+  position: absolute;
+  bottom: -2rem;
+  color: var(--clr-primary-500);
 }
 
 .form__button {
