@@ -25,38 +25,43 @@
             <label for="day" class="input__label">day</label>
             <input
               type="number"
+              inputmode="numeric"
               name="day"
               id="day"
               class="input__input_number"
               placeholder="DD"
-              required
-              min="1"
+              autofocusmin="1"
               max="31"
+              autofocus
             />
+            <small class="input__error"></small>
           </div>
           <div class="form__input input">
             <label for="month" class="input__label">month</label>
             <input
               type="number"
+              inputmode="numeric"
               name="month"
               id="month"
               class="input__input_number"
               placeholder="MM"
-              required
+              autofocus
               min="1"
               max="12"
             />
+            <small class="input__error"></small>
           </div>
           <div class="form__input input">
             <label for="year" class="input__label">year</label>
             <input
               type="number"
+              inputmode="numeric"
               name="year"
               id="year"
               class="input__input_number"
               placeholder="YYYY"
-              required
             />
+            <small class="input__error"></small>
           </div>
           <input
             type="image"
