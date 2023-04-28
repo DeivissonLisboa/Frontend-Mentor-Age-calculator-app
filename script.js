@@ -24,8 +24,35 @@ function animateCounter(html_element, value, delay) {
   }
 }
 
+function errorHandler() {
+  const inputs = document.querySelectorAll(".form__input input")
+
+  inputs.forEach((input) => {
+    let small = input.nextElementSibling
+    if (!input.value) {
+      small.innerText = "This field is required"
+      return false
+    } else {
+      small.innerText = ""
+    }
+  })
+
+  if (inputs[0].value > daysInMonth(inputs[1].value, inputs[2].value)) {
+    let small = inputs[0].nextElementSibling
+    small.innerText = "Must be a valid date"
+
+    return false
+  }
+
+  return true
+}
+
 FORM.addEventListener("submit", (e) => {
   e.preventDefault()
+
+  if (!errorHandler()) {
+    return
+  }
 
   let birthday_day = parseInt(DAY_INPUT.value)
   let birthday_month = parseInt(MONTH_INPUT.value)
