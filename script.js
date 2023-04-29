@@ -58,25 +58,25 @@ FORM.addEventListener("submit", (e) => {
   let birthday_month = parseInt(MONTH_INPUT.value)
   let birthday_year = parseInt(YEAR_INPUT.value)
 
-  let today = new Date()
+  let current_date = new Date()
 
-  let today_day = today.getDate()
-  let today_month = today.getMonth() + 1
-  let today_year = today.getFullYear()
+  let current_date_day = current_date.getDate()
+  let current_date_month = current_date.getMonth() + 1
+  let current_date_year = current_date.getFullYear()
 
-  if (birthday_day > today_day) {
-    today_day += daysInMonth(today_month - 1, today_year)
-    today_month--
+  if (birthday_day > current_date_day) {
+    current_date_day += daysInMonth(current_date_month - 1, current_date_year)
+    current_date_month--
   }
 
-  if (birthday_month > today_month) {
-    today_month += 12
-    today_year--
+  if (birthday_month > current_date_month) {
+    current_date_month += 12
+    current_date_year--
   }
 
-  let days = today_day - birthday_day
-  let months = today_month - birthday_month
-  let years = today_year - birthday_year
+  let days = current_date_day - birthday_day
+  let months = current_date_month - birthday_month
+  let years = current_date_year - birthday_year
 
   // RESULT_YEARS.innerText = years
   // RESULT_MONTHS.innerText = months
