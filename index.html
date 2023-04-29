@@ -20,19 +20,17 @@
   <body>
     <main class="container">
       <header>
-        <form action="" class="form">
+        <form class="form">
           <div class="form__input input">
             <label for="day" class="input__label">day</label>
             <input
               type="number"
-              inputmode="numeric"
               name="day"
               id="day"
               class="input__input_number"
               placeholder="DD"
-              autofocusmin="1"
+              min="1"
               max="31"
-              autofocus
             />
             <small class="input__error"></small>
           </div>
@@ -40,12 +38,10 @@
             <label for="month" class="input__label">month</label>
             <input
               type="number"
-              inputmode="numeric"
               name="month"
               id="month"
               class="input__input_number"
               placeholder="MM"
-              autofocus
               min="1"
               max="12"
             />
@@ -55,7 +51,6 @@
             <label for="year" class="input__label">year</label>
             <input
               type="number"
-              inputmode="numeric"
               name="year"
               id="year"
               class="input__input_number"
@@ -71,11 +66,11 @@
           />
         </form>
       </header>
-      <section class="result">
+      <div class="result">
         <p class="result__text"><span id="years">--</span>years</p>
         <p class="result__text"><span id="months">--</span>months</p>
         <p class="result__text"><span id="days">--</span>days</p>
-      </section>
+      </div>
     </main>
 
     <footer class="footer">
