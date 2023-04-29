@@ -5,9 +5,22 @@ const YEAR_INPUT = document.getElementById("year")
 const RESULT_DAYS = document.getElementById("days")
 const RESULT_MONTHS = document.getElementById("months")
 const RESULT_YEARS = document.getElementById("years")
+const ERRORS = {
+  errorsPresent: false,
+  dayError: document.getElementById("dayError"),
+  monthError: document.getElementById("monthError"),
+  yearError: document.getElementById("yearError"),
+}
+const ERROR_MASSAGES = [
+  "This field is required",
+  "must be a valid day",
+  "must be a valid month",
+  "Must be in the past",
+  "Must be a valid date",
+]
 
 function daysInMonth(month, year) {
-  return parseInt(new Date(year, month, 0).getDate())
+  return new Date(year, month, 0).getDate()
 }
 
 function animateCounter(html_element, value, delay) {
@@ -24,41 +37,92 @@ function animateCounter(html_element, value, delay) {
   }
 }
 
-function errorHandler() {
-  const inputs = document.querySelectorAll(".form__input input")
+function errorHandler(
+  current_date,
+  birthday_day,
+  birthday_month,
+  birthday_year
+) {
+  ERRORS["errorsPresent"] = false
+  ERRORS["dayError"].innerText = ""
+  ERRORS["monthError"].innerText = ""
+  ERRORS["yearError"].innerText = ""
 
-  inputs.forEach((input) => {
-    let small = input.nextElementSibling
-    if (!input.value) {
-      small.innerText = "This field is required"
-      return false
-    } else {
-      small.innerText = ""
-    }
-  })
-
-  if (inputs[0].value > daysInMonth(inputs[1].value, inputs[2].value)) {
-    let small = inputs[0].nextElementSibling
-    small.innerText = "Must be a valid date"
-
-    return false
+  // Day Errors
+  if (!birthday_day) {
+    ERRORS["dayError"].innerText = ERROR_MASSAGES[0]
+    ERRORS["errorsPresent"] = true
+  } else if (birthday_day < 0 || birthday_day > 31) {
+    ERRORS["dayError"].innerText = ERROR_MASSAGES[1]
+    ERRORS["errorsPresent"] = true
   }
 
-  return true
+  // Month errors
+  if (!birthday_month) {
+    ERRORS["monthError"].innerText = ERROR_MASSAGES[0]
+    ERRORS["errorsPresent"] = true
+  } else if (birthday_month < 0 || birthday_month > 12) {
+    ERRORS["monthError"].innerText = ERROR_MASSAGES[2]
+    ERRORS["errorsPresent"] = true
+  }
+
+  // Year errors
+  if (!birthday_year) {
+    ERRORS["yearError"].innerText = ERROR_MASSAGES[0]
+    ERRORS["errorsPresent"] = true
+  } else if (birthday_year > current_date.getFullYear()) {
+    ERRORS["yearError"].innerText = ERROR_MASSAGES[3]
+    ERRORS["errorsPresent"] = true
+  }
+
+  // Invalid day in month
+  if (
+    birthday_day &&
+    birthday_month &&
+    birthday_year &&
+    !ERRORS["errorsPresent"] &&
+    birthday_day > daysInMonth(birthday_month, birthday_year)
+  ) {
+    ERRORS["dayError"].innerText = ERROR_MASSAGES[4]
+    ERRORS["monthError"].innerText = ""
+    ERRORS["yearError"].innerText = ""
+    ERRORS["errorsPresent"] = true
+  }
+
+  if (
+    !ERRORS["dayError"].innerText &&
+    !ERRORS["monthError"].innerText &&
+    !ERRORS["yearError"].innerText
+  ) {
+    ERRORS["errorsPresent"] = false
+    ERRORS["dayError"].innerText = ""
+    ERRORS["monthError"].innerText = ""
+    ERRORS["yearError"].innerText = ""
+  }
+
+  let errors_elements = document.querySelectorAll(".input__error")
+  console.log(errors_elements)
+  errors_elements.forEach((el) => {
+    if (el.innerText && ERRORS["errorsPresent"]) {
+      el.parentElement.classList.add("input_error")
+    } else {
+      el.parentElement.classList.remove("input_error")
+    }
+  })
 }
 
 FORM.addEventListener("submit", (e) => {
   e.preventDefault()
 
-  if (!errorHandler()) {
-    return
-  }
+  let current_date = new Date()
 
   let birthday_day = parseInt(DAY_INPUT.value)
   let birthday_month = parseInt(MONTH_INPUT.value)
   let birthday_year = parseInt(YEAR_INPUT.value)
 
-  let current_date = new Date()
+  errorHandler(current_date, birthday_day, birthday_month, birthday_year)
+
+  if (ERRORS["errorsPresent"]) return
 
   let current_date_day = current_date.getDate()
   let current_date_month = current_date.getMonth() + 1
